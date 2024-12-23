@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Real-Time Stock Tracker</title>
+  </head>
+  <body>
+    <h1>Real-Time Stock Tracker</h1>
+    <div id="stocks"></div>
+    <script>
+      const eventSource = new EventSource("/stream/user1");
+      eventSource.onmessage = function (event) {
+        const data = event.data;
+        const stocksDiv = document.getElementById("stocks");
+        const newLine = document.createElement("div");
+        newLine.textContent = data;
+        stocksDiv.appendChild(newLine);
+      };
+    </script>
+  </body>
+</html>
