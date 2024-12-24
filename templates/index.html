@@ -7,8 +7,9 @@
     <h1>Real-Time Stock Tracker</h1>
     <div id="stocks"></div>
     <script>
-      const eventSource = new EventSource("/stream/user1");
+      const eventSource = new EventSource("http://127.0.0.1:5000/stream/user1");
       eventSource.onmessage = function (event) {
+        console.log("incoming message");
         const data = event.data;
         const stocksDiv = document.getElementById("stocks");
         const newLine = document.createElement("div");

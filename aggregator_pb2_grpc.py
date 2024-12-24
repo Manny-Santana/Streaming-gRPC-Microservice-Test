@@ -16,8 +16,8 @@ class AggregatorStub(object):
         """
         self.GetStockData = channel.unary_stream(
                 '/Aggregator/GetStockData',
-                request_serializer=aggregator__pb2.UserRequest.SerializeToString,
-                response_deserializer=aggregator__pb2.StockUpdate.FromString,
+                request_serializer=aggregator__pb2.ClientRequest.SerializeToString,
+                response_deserializer=aggregator__pb2.StockAggUpdate.FromString,
                 )
 
 
@@ -35,8 +35,8 @@ def add_AggregatorServicer_to_server(servicer, server):
     rpc_method_handlers = {
             'GetStockData': grpc.unary_stream_rpc_method_handler(
                     servicer.GetStockData,
-                    request_deserializer=aggregator__pb2.UserRequest.FromString,
-                    response_serializer=aggregator__pb2.StockUpdate.SerializeToString,
+                    request_deserializer=aggregator__pb2.ClientRequest.FromString,
+                    response_serializer=aggregator__pb2.StockAggUpdate.SerializeToString,
             ),
     }
     generic_handler = grpc.method_handlers_generic_handler(
@@ -60,7 +60,7 @@ class Aggregator(object):
             timeout=None,
             metadata=None):
         return grpc.experimental.unary_stream(request, target, '/Aggregator/GetStockData',
-            aggregator__pb2.UserRequest.SerializeToString,
-            aggregator__pb2.StockUpdate.FromString,
+            aggregator__pb2.ClientRequest.SerializeToString,
+            aggregator__pb2.StockAggUpdate.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)

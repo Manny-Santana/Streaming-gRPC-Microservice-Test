@@ -2,15 +2,15 @@ syntax = "proto3";
 
 service Aggregator
 {
-  rpc GetStockData (UserRequest) returns (stream StockUpdate);
+  rpc GetStockData (ClientRequest) returns (stream StockAggUpdate);
 }
 
-message UserRequest
+message ClientRequest
 {
   string user_id = 1;
 }
 
-message StockUpdate
+message StockAggUpdate
 {
   string company = 1;
   double price = 2;

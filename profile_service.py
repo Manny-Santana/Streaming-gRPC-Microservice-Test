@@ -5,6 +5,7 @@ import profile_pb2_grpc
 
 class ProfileService(profile_pb2_grpc.ProfileServiceServicer):
     def GetUserProfile(self, request, context):
+        print("request recieved... sending data...")
         # Mock user data
         users = {
             "user1": ["AAPL", "GOOGL", "MSFT"],
@@ -15,6 +16,7 @@ class ProfileService(profile_pb2_grpc.ProfileServiceServicer):
             yield profile_pb2.Stock(symbol=stock)
 
 def serve():
+    print("server instantiated.......")
     server = grpc.server(futures.ThreadPoolExecutor(max_workers=10))
     profile_pb2_grpc.add_ProfileServiceServicer_to_server(ProfileService(), server)
     server.add_insecure_port('[::]:50051')
@@ -22,4 +24,5 @@ def serve():
     server.wait_for_termination()
 
 if __name__ == "__main__":
+    print("server is running ....")
     serve()
