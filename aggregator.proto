@@ -1,0 +1,18 @@
+syntax = "proto3";
+
+service Aggregator
+{
+  rpc GetStockData (UserRequest) returns (stream StockUpdate);
+}
+
+message UserRequest
+{
+  string user_id = 1;
+}
+
+message StockUpdate
+{
+  string company = 1;
+  double price = 2;
+  string timestamp = 3;
+}

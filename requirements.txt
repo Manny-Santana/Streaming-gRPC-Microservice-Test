@@ -1,0 +1,6 @@
+werkzeug==2.2.3
+flask==2.3.3
+protobuf==4.24.0
+grpcio==1.57.0
+grpcio-tools==1.57.0
+
