@@ -1,0 +1,13 @@
+syntax = "proto3";
+
+service ProfileService {
+  rpc GetUserProfile (UserRequest) returns (UserProfile);
+}
+
+message UserRequest {
+  string user_id = 1;
+}
+
+message UserProfile {
+  repeated string stock_symbols = 1;  // List of stock symbols user is watching
+}

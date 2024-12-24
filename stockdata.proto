@@ -1,0 +1,15 @@
+syntax = "proto3";
+
+service StockDataService {
+  rpc GetStockPrices (StockRequest) returns (stream StockUpdate);
+}
+
+message StockRequest {
+  string company = 1;
+}
+
+message StockUpdate {
+  string company = 1;
+  double price = 2;
+  string timestamp = 3;
+}
